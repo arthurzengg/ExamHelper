@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/run', methods=['POST'])
 def run_code():
     code = request.form['code']
     with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.py') as temp:
