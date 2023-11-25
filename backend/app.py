@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 import subprocess
 import tempfile
 import os
@@ -10,7 +11,6 @@ CORS(app)
 
 @app.route('/run', methods=['POST'])
 def run_code():
-    print('run')
     code = request.form['code']
     with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.py') as temp:
         temp.write(code)
@@ -24,10 +24,19 @@ def run_code():
 
 @app.route('/get_code')
 def get_code():
-    # 假设这里是从数据库获取代码的逻辑
-    code = "print('Hello from database!')" # 示例代码
-    print("here")
+    file_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/test.txt'
+
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:  # 确保使用正确的编码
+            code = file.read()
+    except FileNotFoundError:
+        return jsonify(error="File not found"), 404
+    except IOError:
+        return jsonify(error="Error reading the file"), 500
+
+    # code = "print('Hello from database!')" # 示例代码
     return jsonify(code=code)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
