@@ -17,6 +17,16 @@ window.onload = function() {
         autofocus: true, // 自动聚焦
         styleActiveLine: true, // 显示选中行的样式
     });
+
+    fetch('http://127.0.0.1:5000/get_code')
+    .then(response => response.json())
+    .then(data => {
+        editor.setValue(data.code); // 使用从后端获取的代码设置编辑器的内容
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
     // 设置初始文本，这个选项也可以在fromTextArea中配置
     myCodeMirror.setOption("value", initValue);
     // 编辑器按键监听
@@ -24,6 +34,8 @@ window.onload = function() {
         // 显示智能提示
         myCodeMirror.showHint(); // 注意，注释了CodeMirror库中show-hint.js第131行的代码（阻止了代码补全，同时提供智能提示）
     });
+
+
 };
 
 function executeCode() {
