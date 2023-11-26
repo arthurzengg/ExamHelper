@@ -21,7 +21,7 @@ function fetchQuestions(year, examType) {
             // 为每个题目创建链接
             questions.forEach(question => {
                 const questionLink = document.createElement('a');
-                questionLink.href = `/base.html?year=${year}&examType=${examType}&question=${question}`; // 假设的 URL 结构
+                questionLink.href = `/code_editor.html?year=${year}&examType=${examType}&question=${question}`; // 假设的 URL 结构
                 questionLink.textContent = question;
                 questionLink.classList.add('question-link');
                 questionsListDiv.appendChild(questionLink);

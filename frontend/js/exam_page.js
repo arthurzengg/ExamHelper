@@ -20,7 +20,7 @@ function fetchExamTypes(year) {
             // 为每种考试类型创建链接
             examTypes.forEach(examType => {
                 const examLink = document.createElement('a');
-                examLink.href = `/exam.html?year=${year}&examType=${examType}`; // 假设的 URL 结构
+                examLink.href = `/exam_questions_page.html?year=${year}&examType=${examType}`; // 假设的 URL 结构
                 examLink.textContent = examType;
                 examLink.classList.add('exam-link');
                 examsListDiv.appendChild(examLink);
