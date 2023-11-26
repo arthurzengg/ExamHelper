@@ -14,8 +14,8 @@ function fetchExamTypes(year) {
     fetch(`http://127.0.0.1:5000/api/exams/${year}`)
         .then(response => response.json())
         .then(examTypes => {
-            const examsContainer = document.querySelector('div'); // 容器，其中包含考试链接
-            examsContainer.innerHTML = ''; // 清空现有内容
+            const examsListDiv = document.getElementById('exams-list');
+            examsListDiv.innerHTML = ''; // 清空现有内容
 
             // 为每种考试类型创建链接
             examTypes.forEach(examType => {
@@ -23,7 +23,7 @@ function fetchExamTypes(year) {
                 examLink.href = `/exam.html?year=${year}&examType=${examType}`; // 假设的 URL 结构
                 examLink.textContent = examType;
                 examLink.classList.add('exam-link');
-                examsContainer.appendChild(examLink);
+                examsListDiv.appendChild(examLink);
             });
         })
         .catch(error => {
