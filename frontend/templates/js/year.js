@@ -1,10 +1,33 @@
-// year.js
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取年份从URL参数
+    // 从 URL 获取年份参数
     const params = new URLSearchParams(window.location.search);
     const year = params.get('year');
+
+    // 设置页面标题中的年份
     document.getElementById('year').textContent = year;
 
-    // 更新链接 URL 或添加事件监听器
-    // ...
+    // 获取并显示考试类型
+    fetchExamTypes(year);
 });
+
+function fetchExamTypes(year) {
+    fetch(`http://127.0.0.1:5000/api/exams/${year}`)
+        .then(response => response.json())
+        .then(examTypes => {
+            const examsContainer = document.querySelector('div'); // 容器，其中包含考试链接
+            examsContainer.innerHTML = ''; // 清空现有内容
+
+            // 为每种考试类型创建链接
+            examTypes.forEach(examType => {
+                const examLink = document.createElement('a');
+                examLink.href = `/exam.html?year=${year}&examType=${examType}`; // 假设的 URL 结构
+                examLink.textContent = examType;
+                examLink.classList.add('exam-link');
+                examsContainer.appendChild(examLink);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            examsContainer.textContent = 'Error loading exam data.';
+        });
+}

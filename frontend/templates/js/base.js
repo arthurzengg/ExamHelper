@@ -18,14 +18,21 @@ window.onload = function() {
         styleActiveLine: true, // 显示选中行的样式
     });
 
-    fetch('http://127.0.0.1:5000/get_code')
-    .then(response => response.json())
-    .then(data => {
-        editor.setValue(data.code); // 使用从后端获取的代码设置编辑器的内容
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    // 从 URL 获取参数并加载相应的代码
+    const params = new URLSearchParams(window.location.search);
+    const year = params.get('year');
+    const examType = params.get('examType');
+    const question = params.get('question');
+
+    fetch(`http://127.0.0.1:5000/get_code?year=${year}&examType=${examType}&question=${question}`)
+        .then(response => response.json())
+        .then(data => {
+            editor.setValue(data.code);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            editor.setValue('// Error loading code');
+        });
 
     // 设置初始文本，这个选项也可以在fromTextArea中配置
     myCodeMirror.setOption("value", initValue);

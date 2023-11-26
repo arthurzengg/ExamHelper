@@ -8,6 +8,24 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+exams_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions'  # exams 文件夹的路径
+@app.route('/api/exams/<year>')
+def get_exams(year):
+    year_path = os.path.join(exams_path, year)
+    if os.path.exists(year_path) and os.path.isdir(year_path):
+        exams = [exam for exam in os.listdir(year_path) if os.path.isdir(os.path.join(year_path, exam))]
+        return jsonify(exams)
+    else:
+        return jsonify([])
+
+@app.route('/api/questions/<year>/<exam>')
+def get_questions(year, exam):
+    exam_path = os.path.join(exams_path, year, exam)
+    if os.path.exists(exam_path) and os.path.isdir(exam_path):
+        questions = [q.split('.')[0] for q in os.listdir(exam_path) if os.path.isfile(os.path.join(exam_path, q))]
+        return jsonify(questions)
+    else:
+        return jsonify([])
 
 @app.route('/run', methods=['POST'])
 def run_code():
@@ -24,17 +42,21 @@ def run_code():
 
 @app.route('/get_code')
 def get_code():
-    file_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/test.txt'
+    year = request.args.get('year')
+    print(year)
+    examType = request.args.get('examType')
+    question = request.args.get('question')
+    file_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/{year}/{examType}/{question}.txt'
+    print(file_path)
 
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:  # 确保使用正确的编码
+        with open(file_path, 'r', encoding='utf-8') as file:
             code = file.read()
     except FileNotFoundError:
         return jsonify(error="File not found"), 404
     except IOError:
         return jsonify(error="Error reading the file"), 500
 
-    # code = "print('Hello from database!')" # 示例代码
     return jsonify(code=code)
 
 
