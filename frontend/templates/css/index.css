@@ -1,0 +1,46 @@
+/* 基本页面样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 内容容器样式 */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* 标题样式 */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#go-back:hover {
+    background-color: #555;
+}
+
+/* 年份链接样式 */
+.year-link {
+    display: block;
+    background-color: #fff;
+    color: #333;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.year-link:hover {
+    background-color: #f8f8f8;
+}
+
+/* 添加其他必要的样式 */
+/* ... */
