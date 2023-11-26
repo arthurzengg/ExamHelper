@@ -24,6 +24,15 @@ window.onload = function() {
     const examType = params.get('examType');
     const question = params.get('question');
 
+
+    // 设置“Back”按钮的 href
+    const backButton = document.getElementById('back-button');
+    if (backButton) {
+        backButton.href = `exam_questions_page.html?year=${year}&examType=${examType}`;
+    }
+
+
+    // 预加载指定题目代码
     fetch(`http://127.0.0.1:5000/get_code?year=${year}&examType=${examType}&question=${question}`)
         .then(response => response.json())
         .then(data => {
@@ -44,6 +53,7 @@ window.onload = function() {
 
 
 };
+
 
 function executeCode() {
     var code = editor.getValue();

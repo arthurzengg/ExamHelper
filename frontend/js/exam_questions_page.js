@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //     获取并显示题目列表
     fetchQuestions(year, examType);
+
+    const backButton = document.getElementById('back-button');
+    if (backButton) {
+        backButton.href = `exam_page.html?year=${year}`;
+    }
 });
 
 function fetchQuestions(year, examType) {
