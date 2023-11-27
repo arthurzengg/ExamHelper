@@ -39,7 +39,6 @@ class Link:
             self = self.rest
         return string + str(self.first) + '>'
 
-
 class Tree:
     """
     >>> t = Tree(3, [Tree(2, [Tree(5)]), Tree(4)])
@@ -74,3 +73,5 @@ class Tree:
                 tree_str += print_tree(b, indent + 1)
             return tree_str
         return print_tree(self).rstrip()
+
+

@@ -42,8 +42,13 @@ def run_code():
 
 @app.route('/get_code')
 def get_code():
+    # Loading skeleton code
+    skeleton_code_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/structure/structure.txt'
+    with open(skeleton_code_path, 'r', encoding='utf-8') as file:
+        skeleton_code = file.read()
+
+    # Loading question's code
     year = request.args.get('year')
-    print(year)
     examType = request.args.get('examType')
     question = request.args.get('question')
     file_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/{year}/{examType}/{question}.txt'
@@ -57,7 +62,7 @@ def get_code():
     except IOError:
         return jsonify(error="Error reading the file"), 500
 
-    return jsonify(code=code)
+    return jsonify(code=skeleton_code+code)
 
 
 if __name__ == '__main__':
