@@ -8,6 +8,10 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def hello_world():
+    return 'Home Page'
+
 exams_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions'  # exams 文件夹的路径
 @app.route('/api/exams/<year>')
 def get_exams(year):
