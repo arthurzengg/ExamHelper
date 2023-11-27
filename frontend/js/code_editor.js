@@ -18,6 +18,16 @@ window.onload = function() {
         styleActiveLine: true, // 显示选中行的样式
     });
 
+
+    // 设置编辑器初始大小
+    editor.setSize("auto", (document.documentElement.clientHeight - 600) + "px");
+
+    // 添加窗口大小改变的监听器
+    window.addEventListener('resize', () => {
+        editor.setSize("auto", (document.documentElement.clientHeight - 600) + "px");
+    });
+
+
     // 从 URL 获取参数并加载相应的代码
     const params = new URLSearchParams(window.location.search);
     const year = params.get('year');
@@ -50,7 +60,6 @@ window.onload = function() {
         // 显示智能提示
         myCodeMirror.showHint(); // 注意，注释了CodeMirror库中show-hint.js第131行的代码（阻止了代码补全，同时提供智能提示）
     });
-
 
 };
 
