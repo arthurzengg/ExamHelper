@@ -12,7 +12,9 @@ CORS(app)
 def hello_world():
     return 'Home Page'
 
-exams_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions'  # exams 文件夹的路径
+# exams_path = '/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions'  # exams 本地文件夹的路径
+exams_path = '/srv/examhelper/backend/exam_questions' # exams 云文件夹的路径
+
 @app.route('/api/exams/<year>')
 def get_exams(year):
     year_path = os.path.join(exams_path, year)
@@ -47,7 +49,8 @@ def run_code():
 @app.route('/get_code')
 def get_code():
     # Loading skeleton code
-    skeleton_code_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/structure/structure.txt'
+    # skeleton_code_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/structure/structure.txt' # 本地文件夹的路径
+    skeleton_code_path = f'/srv/examhelper/backend/exam_questions/structure/structure.txt'  # 云文件夹的路径
     with open(skeleton_code_path, 'r', encoding='utf-8') as file:
         skeleton_code = file.read()
 
@@ -55,7 +58,8 @@ def get_code():
     year = request.args.get('year')
     examType = request.args.get('examType')
     question = request.args.get('question')
-    file_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/{year}/{examType}/{question}.txt'
+    # file_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/{year}/{examType}/{question}.txt' # 本地文件夹的路径
+    file_path = f'/srv/examhelper/backend/exam_questions/{year}/{examType}/{question}.txt'  # 云文件夹的路径
     print(file_path)
 
     try:
