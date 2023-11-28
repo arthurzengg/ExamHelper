@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchQuestions(year, examType) {
-    fetch(`http://127.0.0.1:5000/api/questions/${year}/${examType}`) //本地
-//    fetch(`http://139.224.191.124/api/questions/${year}/${examType}`) //云
+//    fetch(`http://127.0.0.1:5000/api/questions/${year}/${examType}`) //本地
+    fetch(`http://139.224.191.124/api/questions/${year}/${examType}`) //云
         .then(response => response.json())
         .then(questions => {
             const questionsListDiv = document.getElementById('questions-list');
