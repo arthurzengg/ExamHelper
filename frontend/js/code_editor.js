@@ -69,7 +69,7 @@ function executeCode() {
     var code = editor.getValue();
 
 //    fetch('http://127.0.0.1:5000/api/run', {  // 本地
-    fetch('http://http://139.224.191.124/api/run', {
+    fetch('http://139.224.191.124/api/run', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
