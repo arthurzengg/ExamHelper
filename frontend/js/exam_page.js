@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function fetchExamTypes(year) {
 //    fetch(`http://127.0.0.1:5000/api/exams/${year}`) // 本地
-    fetch(`http://139.224.191.124/api/exams/${year}`)
+    fetch(`http://47.251.37.134/api/exams/${year}`)
         .then(response => response.json())
         .then(examTypes => {
             const examsListDiv = document.getElementById('exams-list');
