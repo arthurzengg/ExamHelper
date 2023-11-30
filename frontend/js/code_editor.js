@@ -43,8 +43,8 @@ window.onload = function() {
 
 
     // 预加载指定题目代码
-//    fetch(`http://127.0.0.1:5000/api/get_code/year=${year}&examType=${examType}&question=${question}`) // 本地
-    fetch(`http://47.251.37.134/api/get_code/year=${year}&examType=${examType}&question=${question}`)// 云
+//    fetch(`http://127.0.0.1:5000/api/get_code?year=${year}&examType=${examType}&question=${question}`) // 本地
+    fetch(`http://47.251.37.134/api/get_code?year=${year}&examType=${examType}&question=${question}`)// 云
         .then(response => response.json())
         .then(data => {
             editor.setValue(data.code);
