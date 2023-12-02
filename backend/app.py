@@ -46,7 +46,7 @@ def run_code():
     os.unlink(temp_path)
     return result.stdout or result.stderr
 
-@app.route('/api/get_code/<year>/<exam>/<question>')
+@app.route('/api/get_code/<year>/<examType>/<question>')
 def get_code(year, examType, question):
     # Loading skeleton code
     # skeleton_code_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/structure/structure.txt' # 本地文件夹的路径
