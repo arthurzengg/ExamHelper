@@ -33,19 +33,6 @@ def get_questions(year, exam):
     else:
         return jsonify([])
 
-@app.route('/api/run', methods=['POST'])
-def run_code():
-    code = request.form['code']
-    with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.py') as temp:
-        temp.write(code)
-        temp_path = temp.name
-
-    result = subprocess.run(['python', temp_path], capture_output=True, text=True)
-    # print('result is: ')
-    # print(result)
-    os.unlink(temp_path)
-    return result.stdout or result.stderr
-
 @app.route('/api/get_code/<year>/<examType>/<question>')
 def get_code(year, examType, question):
     # Loading skeleton code
@@ -71,6 +58,19 @@ def get_code(year, examType, question):
         return jsonify(error="Error reading the file"), 500
 
     return jsonify(code=skeleton_code+code)
+
+@app.route('/api/run', methods=['POST'])
+def run_code():
+    code = request.form['code']
+    with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.py') as temp:
+        temp.write(code)
+        temp_path = temp.name
+
+    result = subprocess.run(['python', temp_path], capture_output=True, text=True)
+    # print('result is: ')
+    # print(result)
+    os.unlink(temp_path)
+    return result.stdout or result.stderr
 
 
 if __name__ == '__main__':
