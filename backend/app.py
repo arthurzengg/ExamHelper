@@ -46,8 +46,8 @@ def run_code():
     os.unlink(temp_path)
     return result.stdout or result.stderr
 
-@app.route('/api/get_code')
-def get_code():
+@app.route('/api/get_code/<year>/<exam>/<question>')
+def get_code(year, examType, question):
     # Loading skeleton code
     # skeleton_code_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/structure/structure.txt' # 本地文件夹的路径
     skeleton_code_path = f'/srv/mineeditor/backend/exam_questions/structure/structure.txt'  # 云文件夹的路径
@@ -55,9 +55,9 @@ def get_code():
         skeleton_code = file.read()
 
     # Loading question's code
-    year = request.args.get('year')
-    examType = request.args.get('examType')
-    question = request.args.get('question')
+    # year = request.args.get('year')
+    # examType = request.args.get('examType')
+    # question = request.args.get('question')
     # file_path = f'/Users/arthurzeng/desktop/arthur_zeng_github/ExamHelper/backend/exam_questions/{year}/{examType}/{question}.txt' # 本地文件夹的路径
     file_path = f'/srv/mineeditor/backend/exam_questions/{year}/{examType}/{question}.txt'  # 云文件夹的路径
     print(file_path)
