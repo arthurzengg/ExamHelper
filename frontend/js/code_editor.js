@@ -56,7 +56,8 @@ window.onload = function() {
         });
 
     // 设置初始文本，这个选项也可以在fromTextArea中配置
-    editor.setOption("value", initValue);
+//    editor.setOption("value", initValue);
+
     // 编辑器按键监听
     editor.on("keypress", function() {
         // 显示智能提示
