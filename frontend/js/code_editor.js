@@ -56,11 +56,11 @@ window.onload = function() {
         });
 
     // 设置初始文本，这个选项也可以在fromTextArea中配置
-    myCodeMirror.setOption("value", initValue);
+    editor.setOption("value", initValue);
     // 编辑器按键监听
-    myCodeMirror.on("keypress", function() {
+    editor.on("keypress", function() {
         // 显示智能提示
-        myCodeMirror.showHint(); // 注意，注释了CodeMirror库中show-hint.js第131行的代码（阻止了代码补全，同时提供智能提示）
+        editor.showHint(); // 注意，注释了CodeMirror库中show-hint.js第131行的代码（阻止了代码补全，同时提供智能提示）
     });
 
 };
